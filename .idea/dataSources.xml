@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="656905368">
+  <component name="DataSourceManagerImpl" format="xml" hash="1025119158">
     <data-source source="LOCAL" name="Rails CarPicture: development" uuid="642c6384-38ca-4df5-8107-aab9c3ed2e34">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails CarPicture: production" uuid="d38a564f-9923-4b07-b022-7235a7395094">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:soundcloudViz_production</jdbc-url>
+      <user-name>soundcloudViz</user-name>
       <libraries />
     </data-source>
   </component>

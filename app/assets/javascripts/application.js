@@ -11,7 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require_tree ../../../vendor/assets/javascripts
+//= require galleria-1.3.5.js
+//= require galleria.classic.js
+//= require galleria.flickr.js
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

@@ -46,20 +46,94 @@
 
 <section id="about" data-type="background" data-speed="10" class="pages">
   <section id="about2" class= "pages">
-    <div id = "galleria" class="galleria">
-    </div>
-          <script>
-              var data = <%=raw @photos%>;
-              var output = "";
-                for (var i in data) {
-                    output+="<img src = " + data[i].url_o+ "> </img>";
-                }
-              output+="";
-              document.getElementById("galleria").innerHTML=output;
+    <div id="container">
+      <div id="menu">
+        <a href="https://www.flickr.com/photos/63680264@N05/sets/72157630019907557/">Zédoule mobile</a>
+        <a href="https://www.flickr.com/photos/63680264@N05/sets/72157629247730828/">Sportives</a>
+        <a href="https://www.flickr.com/photos/63680264@N05/sets/72157629154511850/">Auto Rencard</a>
+      </div>
+      <a id="fullscreen" href="#">Enter fullscreen</a>
+      <div id="gallery">
+        <div id="galleria"></div>
+      </div>
 
-              Galleria.loadTheme('assets/galleria/themes/classic/galleria.classic.min.js');
-              Galleria.run('.galleria');
-          </script>
+    </div>
+    <script>
+
+        // load the theme
+        Galleria.loadTheme('assets/galleria.classic.min.js');
+
+        // create a flickr instance
+        var flickr = new Galleria.Flickr();
+        // cache the gallery
+        var elem = $('#galleria');
+        // create and append the loader growl
+        var loader = $('<div>', {
+            id: 'loader'
+        }).appendTo('#gallery');
+
+        // a local var used later
+        var set;
+        var user;
+
+        // set flickr to fetch description and increase the photo limit
+        flickr.setOptions({
+            max: 500,
+            description: true
+        });
+
+        // attach event handler for the menu
+        $('#menu a').click(function(e) {
+
+            e.preventDefault();
+
+            // toggle active class
+            $(this).addClass('active').siblings('.active').removeClass('active');
+
+            // extract the set id from the link href
+            set = this.href.split('/');
+            set = set[set.length-2];
+
+
+            // add loader text and show
+            loader.text('Loading '+$(this).text()).show();
+
+            // load the set
+            flickr.set(set, function(data) {
+                // hide the loader
+                loader.fadeOut('fast');
+
+                // check if galleria has been initialized
+                if (elem.data('galleria')) {
+
+                    // load galleria with the new data
+                    elem.data('galleria').load( data );
+
+                    // else initialize galleria (1st time)
+                } else {
+                    elem.galleria({
+
+                        // add the data as dataSource
+                        dataSource: data,
+
+                        // add a custom fullscreen button
+                        extend: function() {
+                            $('#fullscreen').click(this.proxy(function(e) {
+                                e.preventDefault();
+
+                                // call the enterFullscreen() method from the galleria API
+                                this.enterFullscreen();
+                            }));
+                        }
+                    });
+                }
+            });
+        });
+
+        // trigger a click onload so that the first gallery will be displayed when entering
+        $('#menu a:first-child').click();
+
+    </script>
   </section>
 </section>
 
