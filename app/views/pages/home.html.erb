@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CarPicture</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true%>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+  <style>
+      .galleria{ width: 700px; height: 400px; background: #000 }
+  </style>
+
+</head>
+
+<body>
+<script>
+    $(document).ready(function(){
+// Cache the Window object
+        $window = $(window);
+
+        $('section[data-type="background"]').each(function(){
+            var $bgobj = $(this); // assigning the object
+
+            $(window).scroll(function() {
+                // Scroll the background at var speed
+                // the yPos is a negative value because we're scrolling it UP!
+                var yPos = -($window.scrollTop() / $bgobj.data('speed'));
+
+                // Put together our final background position
+                var coords = '50% '+ yPos + 'px';
+
+                // Move the background
+                $bgobj.css({ backgroundPosition: coords });
+
+            }); // window scroll Ends
+
+        });
+
+    });
+</script>
+<section id="home" data-type="background" data-speed="10" class="pages">
+    <article>
+      <h1>I am absolute positioned</h1>
+    </article>
+</section>
+
+<section id="about" data-type="background" data-speed="10" class="pages">
+  <section id="about2" class= "pages">
+    <div id = "galleria" class="galleria">
+    </div>
+          <script>
+              var data = <%=raw @photos%>;
+              var output = "";
+                for (var i in data) {
+                    output+="<img src = " + data[i].url_o+ "> </img>";
+                }
+              output+="";
+              document.getElementById("galleria").innerHTML=output;
+
+              Galleria.loadTheme('assets/galleria/themes/classic/galleria.classic.min.js');
+              Galleria.run('.galleria');
+          </script>
+  </section>
+</section>
+
+
+
+</body>
+</html>
