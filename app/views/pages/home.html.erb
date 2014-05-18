@@ -12,12 +12,28 @@
 
 </head>
 
-<body>
+<body onload="galF(); Scroll();">
+
 <script>
-    $(document).ready(function(){
+    function Scroll(){
 // Cache the Window object
         $window = $(window);
+        $('div[data-type="background"]').each(function(){
+            var $bgobj = $(this); // assigning the object
 
+            $(window).scroll(function() {
+                // Scroll the background at var speed
+                // the yPos is a negative value because we're scrolling it UP!
+                var yPos = -($window.scrollTop() / $bgobj.data('speed'));
+
+                // Put together our final background position
+                var coords = '50% '+ yPos + 'px';
+
+                // Move the background
+                $bgobj.css({ backgroundPosition: coords });
+
+            });
+        });
         $('section[data-type="background"]').each(function(){
             var $bgobj = $(this); // assigning the object
 
@@ -36,7 +52,7 @@
 
         });
 
-    });
+    };
 </script>
 <section id="home" data-type="background" data-speed="10" class="pages">
     <article>
@@ -54,11 +70,13 @@
       </div>
       <a id="fullscreen" href="#">Enter fullscreen</a>
       <div id="gallery">
-        <div id="galleria"></div>
+        <div id="galleria" class="pages" data-type="background" data-speed="10" >
 
+        </div>
       </div>
 
     </div>
+
     <script>
 
         // load the theme
@@ -133,6 +151,15 @@
 
         // trigger a click onload so that the first gallery will be displayed when entering
         $('#menu a:first-child').click();
+
+    </script>
+    <script>
+        function galF(){
+            var t= document.getElementsByClassName("galleria-container notouch");
+            t[0].className = "galleria-container notouch pages";
+            t[0].dataset.type = "background";
+            t[0].dataset.speed = "10";
+        };
 
     </script>
   </section>
