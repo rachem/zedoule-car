@@ -60,8 +60,12 @@ img {
 #about2
 {
   margin: 0 auto;
-  width: 800px;
-  position: relative;
+  width: 960px;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  top: 35%;
+
 }
 #about2:before,
 #about2:after {
