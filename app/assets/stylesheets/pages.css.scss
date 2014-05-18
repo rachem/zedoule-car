@@ -21,29 +21,43 @@ img {
   width: 100%;
   max-width: 1920px;
   position: relative;
+
+}
+
+#home, #bg
+{
+  background: url(https://farm8.staticflickr.com/7261/6899793758_34757ac858_o.jpg) 50% 0 no-repeat fixed;
   background-size: 100% auto;
+
 }
 
+#boxcontainer{
+  position: relative;
+  width: 600px;
+  height: 355px;
+  top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#bg{
+  position: absolute;
+  z-index: 5;
 
+}
 
-#home article
+#article
 {
- position: absolute;
-  top: 25%;
-  width: 100%;
-  background-color: #000000;
-  opacity:0.66;
+  position: relative;
+  z-index: 100;
+  padding: 100px;
+  background: rgb(34,34,34); /* for IE */
+  background: rgba(34,34,34,0.75);
 }
-#home article h1
-{
 
-  text-align: center;
-  font-family: 'Sansita One', cursive;
-  font-style: italic;
-  margin:30px 40px;
-  font-weight:bold;
-  color: #e1e1e3;
-}
+
+#article h2, #article h5, #article h5 a { text-align: center; color: #fefefe; font-weight: normal; }
+#article h2 { margin-bottom: 50px }
+#article h5 { margin-top: 70px }
 
 
 #about{
@@ -106,7 +120,7 @@ img {
 html,
 
 a {
-  color: #823;
+  color: #ffffff;
   text-decoration: none;
 }
 
